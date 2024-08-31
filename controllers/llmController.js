@@ -1,13 +1,13 @@
 
 const { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory  } = require('@google/generative-ai');
 const fetch = require("node-fetch");
-const fs = require("fs");
+require ("dotnet").config();
 globalThis.fetch = fetch
 
 async function uploadFile(img) {
     try {
 
-        const genAI = new GoogleGenerativeAI("AIzaSyCjBgbAhVTL3bHImtbF3tvprgJx4wVcYSU");
+        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
         const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash-latest'})
 
         const prompt = 'give me the value info in the image only the first line and the numbers with comma'; 
